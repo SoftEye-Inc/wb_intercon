@@ -134,7 +134,7 @@ module wb_mux
    assign wbs_bte_o = {num_slaves{wbm_bte_i}};
 
    assign wbm_dat_o = wbs_dat_i[slave_sel*dw+:dw];
-   assign wbm_ack_o = wbs_ack_i[slave_sel];
+   assign wbm_ack_o = (|match) & wbs_ack_i[slave_sel];
    assign wbm_err_o = wbs_err_i[slave_sel] | wbm_err;
    assign wbm_rty_o = wbs_rty_i[slave_sel];
 
